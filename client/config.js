@@ -2,8 +2,10 @@
  * 小程序配置文件
  */
 
+const secret = require('./secret.js');
+
 // 此处主机域名修改成腾讯云解决方案分配的域名
-var host = 'https://123456.qcloud.la';
+var host = secret.getQcloudHost();
 
 var config = {
 
