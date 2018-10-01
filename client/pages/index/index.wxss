@@ -1,0 +1,37 @@
+#random-movie-comment {
+  margin-top: 40rpx;
+  text-align: center;
+}
+
+#random-movie-comment-image {
+  width: 70%;
+  margin: 0 auto;
+}
+
+#random-movie-comment-name {
+  display: block;
+  font-size: 45rpx;
+  line-height: 63rpx;
+  margin-top: 20rpx;
+}
+
+#random-movie-comment-info {
+  margin-top: 10rpx;
+  font-size: 35rpx;
+  line-height: 49rpx;
+}
+
+#operations {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  background-color: white;
+}
+
+#operations navigator {
+  width: 0;
+  flex-grow: 1;
+  text-align: center;
+  padding: 20rpx 20rpx;
+}

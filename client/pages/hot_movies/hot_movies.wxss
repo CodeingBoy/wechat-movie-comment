@@ -1,1 +1,34 @@
-/* pages/hot_movies/hot_movies.wxss */
+.movie-info {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 30rpx 40rpx;
+  display: flex;
+}
+
+.movie-info-image{
+  width: 200rpx;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.movie-info-detail{
+  flex-grow: 1;
+  padding-left: 30rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.movie-info-detail text{
+  display: block;
+}
+
+.movie-info-title{
+  font-weight: bold;
+  font-size: 35rpx;
+  
+}
+
+.movie-info-category{
+  font-size: 30rpx;
+}

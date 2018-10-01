@@ -1,0 +1,15 @@
+<view id="random-movie-comment">
+  <image id="random-movie-comment-image" src="{{movieInfo.image}}" mode="widthFix" />
+  <text id="random-movie-comment-name">{{movieInfo.title}}</text>
+  <view id="random-movie-comment-info">
+    XX 给你推荐了一部电影
+  </view>
+</view>
+<view id="operations">
+  <navigator id="hot-movies" url="/pages/hot_movies/hot_movies">
+    热门
+  </navigator>
+  <navigator id="user" url="/pages/user/user">
+    我的
+  </navigator>
+</view>

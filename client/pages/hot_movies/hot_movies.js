@@ -1,66 +1,37 @@
-// pages/hot_movies/hot_movies.js
+const qcloud = require('../../vendor/wafer2-client-sdk/index.js');
+const config = require('../../config.js');
+
 Page({
-
-  /**
-   * Page initial data
-   */
   data: {
-
+    movies: []
   },
-
-  /**
-   * Lifecycle function--Called when page load
-   */
   onLoad: function (options) {
-
+    this.loadMovies();
   },
+  loadMovies: function () {
+    wx.showLoading({
+      title: '获取电影中'
+    });
+    const onCompleteLoading = function () {
+      wx.hideLoading();
+    };
 
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page show
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page hide
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page unload
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * Page event handler function--Called when user drop down
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
-  onShareAppMessage: function () {
-
+    const page = this;
+    qcloud.request({
+      url: config.service.listMovies,
+      success: function (response) {
+        page.setData({
+          movies: response.data.data
+        });
+        onCompleteLoading();
+      },
+      fail: function () {
+        onCompleteLoading();
+        wx.showToast({
+          title: '加载电影数据失败',
+          icon: 'none'
+        });
+      }
+    });
   }
 })

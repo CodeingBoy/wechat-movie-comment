@@ -6,9 +6,9 @@
     "pages/movie_detail/movie_detail"
   ],
   "window":{
-    "backgroundColor":"#FFFFFF",
+    "backgroundColor":"#f7f9fb",
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#FFFFF",
+    "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "看看侃侃电影",
     "navigationBarTextStyle":"black"
   }
