@@ -5,7 +5,7 @@
       <text id="movie-title">{{movie.title}}</text>
 
       <view id="comment-text" wx:if="{{mode==1}}">
-        <textarea id="comment-input" name="content" placeholder="输入您的影评内容"></textarea>
+        <textarea id="comment-input" name="content" placeholder="输入您的影评内容" value="{{content}}"></textarea>
       </view>
       <view id="comment-voice" wx:else>
         <button id="voice-record" class="button-reset button">录音</button>

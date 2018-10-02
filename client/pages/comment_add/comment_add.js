@@ -5,7 +5,8 @@ Page({
   data: {
     id: null,
     mode: 1, // 1-文字，2-语音
-    movie: {}
+    movie: {},
+    content: ''
   },
   onLoad: function(options) {
     if (!options.mode) {
@@ -17,7 +18,8 @@ Page({
         id: options.movieId,
         title: options.movieTitle,
         image: options.movieImage
-      }
+      },
+      content: options.content || ''
     });
   },
   onSubmit: function(event) {
@@ -25,7 +27,7 @@ Page({
 
     var result = {};
     if (this.data.mode === 1) {
-      wx.navigateTo({
+      wx.redirectTo({
         url: `/pages/comment_preview/comment_preview?mode=${this.data.mode}&movieId=${this.data.movie.id}&movieTitle=${this.data.movie.title}&movieImage=${this.data.movie.image}&content=${form.content}`
       });
     } else {

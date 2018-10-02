@@ -45,7 +45,9 @@ Page({
     }
   },
   onTapEditButton: function(){
-    wx.navigateBack();
+    wx.redirectTo({
+      url: `/pages/comment_add/comment_add?mode=${this.data.mode}&movieId=${this.data.movie.id}&movieTitle=${this.data.movie.title}&movieImage=${this.data.movie.image}&content=${this.data.content}&voice=${this.data.voice}`
+    });
   },
   onTapSubmitButton: function(){
     wx.showLoading({
