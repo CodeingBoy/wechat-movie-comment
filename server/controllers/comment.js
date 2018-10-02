@@ -3,7 +3,19 @@ const db = require('../utils/db.js');
 module.exports = {
   list: async ctx => {
     const movieId = ctx.request.query.movieId;
-    ctx.state.data = await db.query("SELECT * FROM comment_info WHERE movie_id = ?", [movieId]);
+    var comments = await db.query("SELECT * FROM comment_info WHERE movie_id = ?", [movieId]);
+
+    ctx.state.data = comments.map(function(c){
+      var content = JSON.parse(c.content);
+
+      return {
+        avatarUrl:c.avatar_url,
+        type: content.type,
+        content,
+        id: c.id,
+        nickname: c.nickname
+      };
+    })
   },
   getRandom: async ctx => {
     var movies = await db.query("SELECT * FROM comment_info");
