@@ -40,4 +40,14 @@ router.get('/movies/random', controllers.movie.getRandom);
 // GET /movies/:id 获取电影信息
 router.get('/movies/:id', controllers.movie.get);
 
+// --- 评论接口 --- //
+// GET /comments 获取一部电影的所有评论
+router.get('/comments', controllers.comment.list);
+// GET /comments/random 随机获取一部评论及其电影的信息
+router.get('/comments/random', controllers.comment.getRandom);
+// GET /comments/:id 获取评论
+router.get('/comments/:id', controllers.comment.get);
+// POST /comments 发表评论
+router.post('/comments', validationMiddleware, controllers.comment.add);
+
 module.exports = router

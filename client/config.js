@@ -32,7 +32,13 @@ var config = {
         getMovie: `${host}/weapp/movies/`,
 
         // 随机获取一部电影,
-        getRandomMovie: `${host}/weapp/movies/random`
+        getRandomMovie: `${host}/weapp/movies/random`,
+
+        // 获取一部电影的评论
+        listMovieComments: `${host}/weapp/comments`,
+
+        // 添加评论
+        addComment: `${host}/weapp/comments`
     }
 };
 

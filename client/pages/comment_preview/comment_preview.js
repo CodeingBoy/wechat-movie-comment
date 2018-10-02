@@ -48,6 +48,49 @@ Page({
     wx.navigateBack();
   },
   onTapSubmitButton: function(){
+    wx.showLoading({
+      title: '发表评论中'
+    });
 
+    // due to different comment types, submit json instead of actual content
+    var content = {
+      type: this.data.mode
+    };
+    if (this.data.mode === 1){
+      content.content = this.data.content;
+    }else{
+      content.voice = this.data.voice;
+    }
+
+    // serialize them to database
+    const page = this;
+    qcloud.request({
+      url: config.service.addComment,
+      method: 'POST',
+      login: true,
+      data: {
+        movieId: this.data.movie.id,
+        content: JSON.stringify(content)
+      },
+      success: function(){
+        wx.hideLoading();
+        wx.showToast({
+          title: '发表评论成功',
+          icon: 'success'
+        });
+        setTimeout(function(){
+          wx.redirectTo({
+            url: '/pages/comments/comments?id=' + page.data.movie.id
+          });
+        }, 1000)
+      },
+      fail: function(){
+        wx.hideLoading();
+        wx.showToast({
+          title: '发表评论失败，请稍候再试',
+          icon: 'none'
+        });
+      }
+    });
   }
 });
