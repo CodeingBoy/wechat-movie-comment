@@ -37,5 +37,7 @@ router.post('/message', controllers.message.post)
 router.get('/movies', controllers.movie.list);
 // GET /movies/random 随机获取一部电影
 router.get('/movies/random', controllers.movie.getRandom);
+// GET /movies/:id 获取电影信息
+router.get('/movies/:id', controllers.movie.get);
 
 module.exports = router
