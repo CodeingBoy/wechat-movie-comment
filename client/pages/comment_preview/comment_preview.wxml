@@ -1,2 +1,19 @@
-<!--pages/comment_preview/comment_preview.wxml-->
-<text>pages/comment_preview/comment_preview.wxml</text>
+<view id="wrapper">
+  <image id="movie-image" src="{{movie.image}}" mode="widthFix" />
+  <text id="movie-title">{{movie.title}}</text>
+  <view id="user-info">
+    <image id="user-avatar" src="{{userInfo.avatarUrl}}" mode="widthFix" />
+    <text id="comment-title">{{userInfo.nickName}}的影评</text>
+  </view>
+  <view id="comment-text" wx:if="{{mode==1}}">
+    <text id="comment-decoration">“</text>
+    <text id="comment-content">{{content}}</text>
+  </view>
+  <view id="comment-voice" wx:else>
+    <button id="voice-record" class="button-reset button">录音</button>
+  </view>
+  <view id="operations">
+    <button class="button button-reset" id="edit-button" bind:tap="onTapEditButton">重新编辑</button>
+    <button class="button button-reset" id="submit-button" bind:tap="onTapSubmitButton">发布影评</button>
+  </view>
+</view>

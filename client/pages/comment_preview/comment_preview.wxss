@@ -1,1 +1,94 @@
-/* pages/comment_preview/comment_preview.wxss */
+page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#wrapper {
+  flex-grow: 1;
+  margin: 100rpx 30rpx 30rpx 30rpx;
+  background-color: white;
+  padding: 20rpx 20rpx;
+  padding-top: 250rpx;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+#wrapper > text {
+  display: block;
+}
+
+#movie-image {
+  width: 200rpx;
+  position: absolute;
+  top: -60rpx;
+  left: 245rpx;
+}
+
+#movie-title {
+  text-align: center;
+  font-size: 40rpx;
+  line-height: 56rpx;
+  font-weight: bold;
+  margin-bottom: 40rpx;
+  flex-grow: 0;
+}
+
+#user-info{
+  margin: 0 50rpx;
+  display: flex;
+  align-items: center;
+}
+
+#user-avatar {
+  border-radius: 50%;
+  width: 125rpx;
+  height: 125rpx;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+#comment-title{
+  font-size: 35rpx;
+  margin-left: 30rpx;
+  flex-grow: 1;
+}
+
+#comment-text{
+  display: flex;
+  margin: 30rpx 50rpx 0 50rpx;
+}
+
+#comment-decoration{
+  font-size: 60rpx;
+  width: 125rpx;
+  flex-shrink: 0;
+  flex-grow: 0;
+  text-align: right;
+}
+
+#comment-content{
+  font-size: 30rpx;
+  line-height: 42rpx;
+  flex-grow: 1;
+  margin-left: 30rpx;
+}
+
+#operations {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  margin-bottom: 30rpx;
+}
+
+button.button {
+  display: inline-block;
+  flex-grow: 1;
+  margin: 0 40rpx 10rpx 40rpx;
+  text-align: center;
+  padding: 10rpx 10rpx;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  color: gray;
+}

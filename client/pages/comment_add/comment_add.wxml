@@ -1,2 +1,16 @@
-<!--pages/comment_add/comment_add.wxml-->
-<text>pages/comment_add/comment_add.wxml</text>
+<form bind:submit="onSubmit">
+  <view id="form-wrapper">
+    <view id="wrapper">
+      <image id="movie-image" src="{{movie.image}}" mode="widthFix" />
+      <text id="movie-title">{{movie.title}}</text>
+
+      <view id="comment-text" wx:if="{{mode==1}}">
+        <textarea id="comment-input" name="content" placeholder="输入您的影评内容"></textarea>
+      </view>
+      <view id="comment-voice" wx:else>
+        <button id="voice-record" class="button-reset button">录音</button>
+      </view>
+    </view>
+    <button id="submit-button" type="primary" form-type="submit">完成</button>
+  </view>
+</form>

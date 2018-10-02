@@ -3,7 +3,10 @@
     "pages/index/index",
     "pages/user/user",
     "pages/hot_movies/hot_movies",
-    "pages/movie_detail/movie_detail"
+    "pages/movie_detail/movie_detail",
+    "pages/comments/comments",
+    "pages/comment_add/comment_add",
+    "pages/comment_preview/comment_preview"
   ],
   "window":{
     "backgroundColor":"#f7f9fb",

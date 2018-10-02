@@ -1,9 +1,9 @@
 <scroll-view scroll-y>
-  <view class="movie-info" wx:for="{{movies}}">
+  <navigator class="movie-info" wx:for="{{movies}}" url="/pages/movie_detail/movie_detail?id={{item.id}}">
     <image class="movie-info-image" src="{{item.image}}" mode="widthFix" />
     <view class="movie-info-detail">
       <text class="movie-info-title">{{item.title}}</text>
       <text class="movie-info-category">类型：{{item.category}}</text>
     </view>
-  </view>
+  </navigator>
 </scroll-view>

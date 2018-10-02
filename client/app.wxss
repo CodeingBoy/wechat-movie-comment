@@ -1,4 +1,5 @@
 /**app.wxss**/
+
 .container {
   display: flex;
   flex-direction: column;
@@ -6,6 +7,22 @@
   box-sizing: border-box;
 }
 
-page{
+page {
   background-color: #f7f9fb;
+}
+
+button.button-reset {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0;
+  box-sizing: none;
+  font-size: unset;
+  text-align: left;
+  text-decoration: none;
+  line-height: unset;
+  border-radius: 0;
+  overflow: hidden;
+  color: unset;
+  background-color: unset;
 }

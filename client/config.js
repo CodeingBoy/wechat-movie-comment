@@ -28,6 +28,9 @@ var config = {
         // 获取电影列表
         listMovies: `${host}/weapp/movies`,
 
+        // 获取一部电影,
+        getMovie: `${host}/weapp/movies/`,
+
         // 随机获取一部电影,
         getRandomMovie: `${host}/weapp/movies/random`
     }

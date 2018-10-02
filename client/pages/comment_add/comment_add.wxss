@@ -1,1 +1,57 @@
-/* pages/comment_add/comment_add.wxss */
+page {
+  height: 100%;
+}
+
+#form-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#wrapper {
+  flex-grow: 1;
+  margin: 100rpx 30rpx 30rpx 30rpx;
+  background-color: white;
+  padding: 20rpx 20rpx;
+  padding-top: 250rpx;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+#wrapper text {
+  display: block;
+}
+
+#movie-image {
+  width: 200rpx;
+  position: absolute;
+  top: -60rpx;
+  left: 245rpx;
+}
+
+#movie-title {
+  text-align: center;
+  font-size: 40rpx;
+  line-height: 56rpx;
+  font-weight: bold;
+  margin-bottom: 40rpx;
+  flex-grow: 0;
+}
+
+#comment-input {
+  width: 90%;
+  margin: 0 auto;
+}
+
+#voice-record {
+  margin: 0 40rpx 10rpx 40rpx;
+  text-align: center;
+  padding: 10rpx 10rpx;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  color: gray;
+}
+
+#submit-button {
+  width: 100%;
+}

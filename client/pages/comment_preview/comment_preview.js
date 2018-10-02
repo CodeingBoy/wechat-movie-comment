@@ -1,66 +1,53 @@
-// pages/comment_preview/comment_preview.js
+const qcloud = require('../../vendor/wafer2-client-sdk/index.js');
+const config = require('../../config.js');
+const app = getApp();
+
 Page({
-
-  /**
-   * Page initial data
-   */
   data: {
-
+    id: null,
+    mode: 1, // 1-文字，2-语音
+    movie: {},
+    userInfo: {},
+    content: {},
+    voice: {}
   },
+  onLoad: function(options) {
+    const userInfo = app.getUserInfo();
+    if (!userInfo) {
+      wx.navigateBack();
+      wx.showToast({
+        title: '登录后才能发表影评哦',
+        icon: 'none'
+      });
+      return;
+    }
 
-  /**
-   * Lifecycle function--Called when page load
-   */
-  onLoad: function (options) {
-
+    if (!options.mode) {
+      options.mode = 1;
+    }
+    this.setData({
+      mode: Number(options.mode),
+      movie: {
+        id: options.movieId,
+        title: options.movieTitle,
+        image: options.movieImage
+      },
+      userInfo
+    });
+    if (this.data.mode === 1) {
+      this.setData({
+        content: options.content
+      });
+    } else {
+      this.setData({
+        voice: options.voice
+      });
+    }
   },
-
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady: function () {
-
+  onTapEditButton: function(){
+    wx.navigateBack();
   },
-
-  /**
-   * Lifecycle function--Called when page show
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page hide
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page unload
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * Page event handler function--Called when user drop down
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
-  onShareAppMessage: function () {
+  onTapSubmitButton: function(){
 
   }
-})
+});

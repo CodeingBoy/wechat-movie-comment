@@ -1,66 +1,36 @@
-// pages/comment_add/comment_add.js
+const qcloud = require('../../vendor/wafer2-client-sdk/index.js');
+const config = require('../../config.js');
+
 Page({
-
-  /**
-   * Page initial data
-   */
   data: {
-
+    id: null,
+    mode: 1, // 1-文字，2-语音
+    movie: {}
   },
-
-  /**
-   * Lifecycle function--Called when page load
-   */
-  onLoad: function (options) {
-
+  onLoad: function(options) {
+    if (!options.mode) {
+      options.mode = 1;
+    }
+    this.setData({
+      mode: Number(options.mode),
+      movie: {
+        id: options.movieId,
+        title: options.movieTitle,
+        image: options.movieImage
+      }
+    });
   },
+  onSubmit: function(event) {
+    const form = event.detail.value;
 
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady: function () {
+    var result = {};
+    if (this.data.mode === 1) {
+      wx.navigateTo({
+        url: `/pages/comment_preview/comment_preview?mode=${this.data.mode}&movieId=${this.data.movie.id}&movieTitle=${this.data.movie.title}&movieImage=${this.data.movie.image}&content=${form.content}`
+      });
+    } else {
 
-  },
-
-  /**
-   * Lifecycle function--Called when page show
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page hide
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page unload
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * Page event handler function--Called when user drop down
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
-  onShareAppMessage: function () {
-
+    }
   }
-})
+
+});

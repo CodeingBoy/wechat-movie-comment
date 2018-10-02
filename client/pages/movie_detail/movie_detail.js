@@ -1,66 +1,85 @@
-// pages/movie_detail/movie_detail.js
+const qcloud = require('../../vendor/wafer2-client-sdk/index.js');
+const config = require('../../config.js');
+const app = getApp();
+
 Page({
-
-  /**
-   * Page initial data
-   */
   data: {
-
+    id: null,
+    movie: {},
+    userInfo: null
   },
-
-  /**
-   * Lifecycle function--Called when page load
-   */
-  onLoad: function (options) {
-
+  onLoad: function(options) {
+    this.setData({
+      id: options.id,
+      userInfo: app.getUserInfo()
+    });
+    this.loadMovie(this.data.id);
   },
+  loadMovie: function(id) {
+    wx.showLoading({
+      title: '获取电影中'
+    });
+    const onCompleteLoading = function() {
+      wx.hideLoading();
+    };
 
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady: function () {
-
+    const page = this;
+    qcloud.request({
+      url: config.service.getMovie + id,
+      success: function(response) {
+        page.setData({
+         movie: response.data.data
+        });
+        onCompleteLoading();
+      },
+      fail: function() {
+        onCompleteLoading();
+        wx.showToast({
+          title: '加载电影数据失败',
+          icon: 'none'
+        });
+      }
+    });
   },
-
-  /**
-   * Lifecycle function--Called when page show
-   */
-  onShow: function () {
-
+  onTapMovieImage: function(){
+    wx.previewImage({
+      urls: [this.data.movie.image]
+    });
   },
-
-  /**
-   * Lifecycle function--Called when page hide
-   */
-  onHide: function () {
-
+  onTapShowComments: function() {
+    wx.navigateTo({
+      url: '/pages/comments/comments?id=' + this.data.id
+    });
   },
-
-  /**
-   * Lifecycle function--Called when page unload
-   */
-  onUnload: function () {
-
+  onTapAddComment: function() {
+    const page = this;
+    wx.showActionSheet({
+      itemList: ['文字', '语音'],
+      success: function(result) {
+        wx.navigateTo({
+          url: `/pages/comment_add/comment_add?mode=${result.tapIndex+1}&movieId=${page.data.movie.id}&movieTitle=${page.data.movie.title}&movieImage=${page.data.movie.image}`
+        });
+      }
+    });
   },
-
-  /**
-   * Page event handler function--Called when user drop down
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
-  onShareAppMessage: function () {
-
+  onTapLoginButton: function(response){
+    wx.showLoading({
+      title: '正在登录'
+    });
+    
+    const page = this;
+    app.onTapLoginButton(response, function(){
+      page.setData({
+        userInfo: app.getUserInfo()
+      });
+      wx.hideLoading();
+      wx.showToast({
+        title: '登录成功',
+        icon: 'success'
+      });
+      page.onTapAddComment();
+    }, function(){
+      wx.hideLoading();
+    });
   }
-})
+});

@@ -1,2 +1,12 @@
-<!--pages/movie_detail/movie_detail.wxml-->
-<text>pages/movie_detail/movie_detail.wxml</text>
+<view id="wrapper">
+  <image id="movie-image" src="{{movie.image}}" mode="widthFix" bind:tap="onTapMovieImage" />
+  <view id="movie-details">
+    <text id="movie-title">{{movie.title}}</text>
+    <text id="movie-description">{{movie.description}}</text>
+  </view>
+  <view id="operations">
+    <button class="button-reset button" bind:tap="onTapShowComments">查看影评</button>
+    <button class="button-reset button" open-type="getUserInfo" wx:if="{{!userInfo}}" bind:getuserinfo="onTapLoginButton">登录并添加影评</button>
+    <button class="button-reset button" wx:else bind:tap="onTapAddComment">添加影评</button>
+  </view>
+</view>
