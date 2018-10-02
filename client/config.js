@@ -37,8 +37,14 @@ var config = {
         // 获取一部电影的评论
         listMovieComments: `${host}/weapp/comments`,
 
+        // 获取用户发布的电影评论
+        listUserComments: `${host}/weapp/comments/me`,
+
         // 添加评论
         addComment: `${host}/weapp/comments`,
+
+        // 获取收藏评论
+        listFavouriteComments: `${host}/weapp/favourites`,
 
         // 添加收藏
         addFavouriteComment: `${host}/weapp/favourites`

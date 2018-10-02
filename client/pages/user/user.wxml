@@ -1,2 +1,41 @@
-<!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+<view id="login-prompt" wx:if="{{!userInfo}}">
+  <text id="login-prompt-text">您还未登录，请先登录</text>
+  <button id="login-button" open-type="getUserInfo" type="primary" bind:getuserinfo="onTapLoginButton">微信登录</button>
+</view>
+<view id="wrapper" wx:else>
+  <view id="inner-wrapper">
+    <view id="favourite-comments">
+      <text class="title">我收藏的影评</text>
+      <text class="empty-prompt" wx:if="{{!favouriteComments.length}}">暂时还没有收藏影评哦，快去收藏一些吧</text>
+      <view class="movie-info" wx:for="{{favouriteComments}}" bind:tap="onTapCommentView" data-type="1" data-index="{{index}}">
+        <image class="movie-info-image" src="{{item.image}}" mode="widthFix" />
+        <view class="movie-info-detail">
+          <text class="movie-info-title">{{item.title}}</text>
+          <text class="comment-summary" wx:if="{{item.type == 1}}">{{item.content.content}}</text>
+          <view class="voice-box" wx:else>{{item.content.voiceDuration}}s</view>
+          <view class="comment-user-info">
+            <image class="comment-user-info-avatar" src="{{item.avatarUrl}}" mode="widthFix"/>
+            <text class="comment-user-info-nickname">{{item.nickname}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view id="sumbitted-comments">
+      <text class="title">我发布的影评</text>
+      <text class="empty-prompt" wx:if="{{!submittedComments.length}}">暂时还没有发布影评哦，快去发布一些吧</text>
+      <view class="movie-info" wx:for="{{submittedComments}}" bind:tap="onTapCommentView" data-type="2" data-index="{{index}}">
+        <image class="movie-info-image" src="{{item.image}}" mode="widthFix" />
+        <view class="movie-info-detail">
+          <text class="movie-info-title">{{item.title}}</text>
+          <text class="comment-summary" wx:if="{{item.type == 1}}">{{item.content.content}}</text>
+          <view class="voice-box" wx:else>{{item.content.voiceDuration}}s</view>
+          <view class="comment-user-info">
+            <image class="comment-user-info-avatar" src="{{item.avatarUrl}}" mode="widthFix"/>
+            <text class="comment-user-info-nickname">{{item.nickname}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <button id="navigate-to-index-button" bind:tap="onTapNavigateToIndex">返回首页</button>
+</view>

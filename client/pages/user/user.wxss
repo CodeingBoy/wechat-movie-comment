@@ -1,1 +1,95 @@
-/* pages/user/user.wxss */
+#login-prompt {
+  width: 100%;
+  margin-top: 50%;
+}
+
+#login-prompt-text {
+  display: block;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 20rpx;
+}
+
+#login-button {
+  margin: 0 20rpx;
+}
+
+.title {
+  display: block;
+  font-size: 35rpx;
+  text-align: center;
+  margin: 20rpx 0;
+  color: rgb(214, 139, 0);
+}
+
+.empty-prompt {
+  font-size: 30rpx;
+  line-height: 42rpx;
+  display: block;
+  text-align: center;
+  color: gray;
+}
+
+.movie-info {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 30rpx 40rpx;
+  display: flex;
+}
+
+.movie-info-image {
+  width: 200rpx;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.movie-info-detail {
+  flex-grow: 1;
+  padding-left: 30rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.movie-info-detail text {
+  display: block;
+}
+
+.comment-summary {
+  margin-top: 30rpx;
+  font-size: 30rpx;
+}
+
+.movie-info-title {
+  font-weight: bold;
+  font-size: 35rpx;
+}
+
+.comment-user-info {
+  display: flex;
+  align-items: center;
+}
+
+.comment-user-info-avatar {
+  flex-shrink: 0;
+  flex-grow: 0;
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+}
+
+.comment-user-info-nickname {
+  font-size: 30rpx;
+  line-height: 42rpx;
+  margin-left: 10rpx
+}
+
+#inner-wrapper {
+  margin-bottom: 130rpx;
+}
+
+#navigate-to-index-button {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

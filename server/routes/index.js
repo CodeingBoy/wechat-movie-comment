@@ -45,6 +45,8 @@ router.get('/movies/:id', controllers.movie.get);
 router.get('/comments', controllers.comment.list);
 // GET /comments/random 随机获取一部评论及其电影的信息
 router.get('/comments/random', controllers.comment.getRandom);
+// GET /comments/me 获取用户自己发布的所有评论
+router.get('/comments/me', validationMiddleware, controllers.comment.listUserComment);
 // GET /comments/:id 获取评论
 router.get('/comments/:id', controllers.comment.get);
 // POST /comments 发表评论

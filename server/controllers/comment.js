@@ -5,15 +5,34 @@ module.exports = {
     const movieId = ctx.request.query.movieId;
     var comments = await db.query("SELECT * FROM comment_info WHERE movie_id = ?", [movieId]);
 
-    ctx.state.data = comments.map(function(c){
+    ctx.state.data = comments.map(function(c) {
       var content = JSON.parse(c.content);
 
       return {
-        avatarUrl:c.avatar_url,
+        avatarUrl: c.avatar_url,
         type: content.type,
         content,
         id: c.id,
         nickname: c.nickname
+      };
+    })
+  },
+  listUserComment: async ctx => {
+    const openId = ctx.state.$wxInfo.userinfo.openId;
+    var comments = await db.query("SELECT c.*, m.id AS movie_id, m.title, m.image FROM comment_info AS c JOIN movies AS m ON c.movie_id = m.id WHERE open_id = ?", [openId]);
+
+    ctx.state.data = comments.map(function(c) {
+      var content = JSON.parse(c.content);
+
+      return {
+        avatarUrl: c.avatar_url,
+        type: content.type,
+        content,
+        id: c.id,
+        nickname: c.nickname,
+        title: c.title,
+        image: c.image,
+        movieId: c.movie_id
       };
     })
   },
@@ -33,7 +52,7 @@ module.exports = {
       ctx.state.data = {};
     }
   },
-  add: async ctx =>{
+  add: async ctx => {
     const openId = ctx.state.$wxInfo.userinfo.openId;
     const nickName = ctx.state.$wxInfo.userinfo.nickName;
     const avatarUrl = ctx.state.$wxInfo.userinfo.avatarUrl;
