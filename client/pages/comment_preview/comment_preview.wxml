@@ -5,12 +5,10 @@
     <image id="user-avatar" src="{{userInfo.avatarUrl}}" mode="widthFix" />
     <text id="comment-title">{{userInfo.nickName}}的影评</text>
   </view>
-  <view id="comment-text" wx:if="{{mode==1}}">
+  <view id="comment-wrapper">
     <text id="comment-decoration">“</text>
-    <text id="comment-content">{{content}}</text>
-  </view>
-  <view id="comment-voice" wx:else>
-    <button id="voice-record" class="button-reset button">录音</button>
+    <text id="comment-content" wx:if="{{mode==1}}">{{content}}</text>
+    <view id="voice-replay" class="voice-box" wx:else bind:tap="onTapReplayVoiceButton">{{voiceDuration}}s</view>
   </view>
   <view id="operations">
     <button class="button button-reset" id="edit-button" bind:tap="onTapEditButton">重新编辑</button>

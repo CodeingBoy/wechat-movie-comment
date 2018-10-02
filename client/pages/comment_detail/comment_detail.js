@@ -7,7 +7,8 @@ Page({
     mode: 1, // 1-文字，2-语音
     movie: {},
     comment: {},
-    userInfo: null
+    userInfo: null,
+    isReplaying: false
   },
   onLoad: function(options) {
     if (!options.mode) {
@@ -97,5 +98,21 @@ Page({
         });
       }
     })
+  },
+  onTapReplayVoiceButton: function () {
+    if (this.data.isReplaying) {
+      return;
+    }
+    
+    const page = this;
+    const context = app.replayAudio(this.data.comment.content.voice, function () {
+      page.setData({
+        isReplaying: true
+      });
+    }, function () {
+      page.setData({
+        isReplaying: false
+      });
+    });
   }
 });

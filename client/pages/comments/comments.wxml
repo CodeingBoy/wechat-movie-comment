@@ -12,6 +12,7 @@
         {{item.content.content}}
       </view>
       <view class="comment-voice-summary" wx:else>
+      <view class="voice-box">{{item.content.voiceDuration}}s</view>
       </view>
     </view>
   </view>

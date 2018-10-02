@@ -43,13 +43,18 @@ page {
   margin: 0 auto;
 }
 
-#voice-record {
+#voice-record, #voice-record-stop, #voice-record-replay {
+  display: block;
   margin: 0 40rpx 10rpx 40rpx;
   text-align: center;
-  padding: 10rpx 10rpx;
+  padding: 30rpx 40rpx;
   font-size: 30rpx;
   line-height: 42rpx;
-  color: gray;
+  color: white;
+}
+
+#voice-record-replay {
+  color: black;
 }
 
 #submit-button {

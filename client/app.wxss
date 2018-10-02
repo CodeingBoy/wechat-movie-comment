@@ -26,3 +26,12 @@ button.button-reset {
   color: unset;
   background-color: unset;
 }
+
+.voice-box {
+  background-color: lightgray;
+  border: 1px solid gray;
+  font-size: 30rpx;
+  height: 45rpx;
+  padding: 0 20rpx;
+  width: 200rpx;
+}

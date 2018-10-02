@@ -6,59 +6,59 @@ var userInfo = null;
 var sessionValid = false;
 
 App({
-  onLaunch: function () {
+  onLaunch: function() {
     qcloud.setLoginUrl(config.service.loginUrl)
     this.loadSessionUserInfo();
   },
-  loadSessionUserInfo: function () {
+  loadSessionUserInfo: function() {
     const page = this;
     wx.checkSession({
-      success: function () {
+      success: function() {
         page.refreshSessionUserInfo();
         sessionValid = true;
       },
-      fail: function () {
+      fail: function() {
         console.log("session invalid");
       }
     })
   },
-  refreshSessionUserInfo: function () {
+  refreshSessionUserInfo: function() {
     const userInfoPromise = this.getSessionUserInfo()
-      .then(function (info) {
+      .then(function(info) {
         userInfo = info;
       });
   },
-  getSessionUserInfo: function () {
+  getSessionUserInfo: function() {
     return new Promise((resolve, reject) => {
       qcloud.request({
         url: config.service.requestUrl,
         login: true,
-        success: function (response) {
+        success: function(response) {
           resolve(response.data.data);
         },
-        fail: function (error) {
+        fail: function(error) {
           console.log(error);
           reject(new Error(error));
         }
       })
     });
   },
-  getUserInfo: function () {
+  getUserInfo: function() {
     return userInfo;
   },
-  setUserInfo: function (info) {
+  setUserInfo: function(info) {
     userInfo = info;
   },
-  onTapLoginButton: function (response, success, fail) {
+  onTapLoginButton: function(response, success, fail) {
     const app = this;
     if (response.detail.userInfo) {
       qcloud.login({
-        success: function (response) {
+        success: function(response) {
           app.setUserInfo(response);
 
           typeof success === 'function' && success();
         },
-        fail: function (err) {
+        fail: function(err) {
           console.log(err);
           wx.showToast({
             title: '登录失败',
@@ -76,4 +76,30 @@ App({
       onCompleteLoading();
     }
   },
+  replayAudio: function(audioFilePath, onPlay, onEnded) {
+    const context = wx.createInnerAudioContext();
+
+    context.src = audioFilePath;
+    context.onEnded(function() {
+      onEnded && onEnded();
+      context.destroy();
+    });
+
+    onPlay && onPlay();
+    context.play();
+
+    return context;
+  },
+  getAudioDuration: function(audioFilePath, callback) {
+    const context = wx.createInnerAudioContext();
+    context.src = audioFilePath;
+    context.onCanplay(function(){
+      context.duration;
+      setTimeout(function () {
+        console.log(context.duration);
+        callback(context.duration);
+        context.destroy();
+      }, 1000);
+    });
+  }
 });

@@ -54,7 +54,7 @@ page {
   flex-grow: 1;
 }
 
-#comment-text{
+#comment-wrapper {
   display: flex;
   margin: 30rpx 50rpx 0 50rpx;
 }
@@ -80,6 +80,10 @@ page {
   width: 100%;
   display: flex;
   margin-bottom: 30rpx;
+}
+
+.voice-box{
+  margin-left: 30rpx;
 }
 
 button.button {

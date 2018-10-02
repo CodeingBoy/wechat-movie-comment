@@ -5,12 +5,10 @@
     <image id="user-avatar" src="{{comment.avatarUrl}}" mode="widthFix" />
     <text id="comment-title">{{comment.nickname}}的影评</text>
   </view>
-  <view id="comment-text" wx:if="{{mode==1}}">
+  <view id="comment-wrapper">
     <text id="comment-decoration">“</text>
-    <text id="comment-content">{{comment.content.content}}</text>
-  </view>
-  <view id="comment-voice" wx:else>
-    <button id="voice-record" class="button-reset button">录音</button>
+    <text id="comment-content" wx:if="{{mode==1}}">{{content}}</text>
+    <view class="voice-box" wx:else bind:tap="onTapReplayVoiceButton" disabled="{{isReplaying}}">{{comment.content.voiceDuration}}s</view>
   </view>
   <view id="operations">
     <button class="button-reset button" open-type="getUserInfo" wx:if="{{!userInfo}}" bind:getuserinfo="onTapLoginToFavouriteButton">登录并收藏评论</button>

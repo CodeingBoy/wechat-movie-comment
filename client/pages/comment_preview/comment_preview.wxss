@@ -34,7 +34,7 @@ page {
   flex-grow: 0;
 }
 
-#user-info{
+#user-info {
   margin: 0 50rpx;
   display: flex;
   align-items: center;
@@ -48,18 +48,18 @@ page {
   flex-grow: 0;
 }
 
-#comment-title{
+#comment-title {
   font-size: 35rpx;
   margin-left: 30rpx;
   flex-grow: 1;
 }
 
-#comment-text{
+#comment-wrapper {
   display: flex;
   margin: 30rpx 50rpx 0 50rpx;
 }
 
-#comment-decoration{
+#comment-decoration {
   font-size: 60rpx;
   width: 125rpx;
   flex-shrink: 0;
@@ -67,7 +67,7 @@ page {
   text-align: right;
 }
 
-#comment-content{
+#comment-content {
   font-size: 30rpx;
   line-height: 42rpx;
   flex-grow: 1;
@@ -91,4 +91,9 @@ button.button {
   font-size: 30rpx;
   line-height: 42rpx;
   color: gray;
+}
+
+#voice-replay {
+  margin-left: 30rpx;
+
 }
