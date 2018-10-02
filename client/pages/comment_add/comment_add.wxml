@@ -5,7 +5,7 @@
       <text id="movie-title">{{movie.title}}</text>
 
       <view id="comment-text" wx:if="{{mode==1}}">
-        <textarea id="comment-input" name="content" placeholder="输入您的影评内容" value="{{content}}"></textarea>
+        <textarea id="comment-input" name="content" placeholder="输入您的影评内容" value="{{content}}" bindinput="onInput" maxlength="-1"></textarea>
       </view>
       <view id="comment-voice" wx:else>
         <button id="voice-record" size="mini" type="primary" class="button" disabled="{{isRecording || isReplaying}}" bind:tap="onTapStartRecordingButton">开始录音</button>
@@ -13,6 +13,6 @@
         <button id="voice-record-replay" size="mini" class="button" wx:if="{{voiceFilePath}}" disabled="{{isReplaying}}" bind:tap="onTapReplayButton">{{isReplaying?'回放中':'回放录音'}}</button>
       </view>
     </view>
-    <button id="submit-button" type="primary" form-type="submit">完成</button>
+    <button id="submit-button" type="primary" form-type="submit" disabled="{{!canSubmit}}">完成</button>
   </view>
 </form>

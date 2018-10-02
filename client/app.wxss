@@ -35,3 +35,22 @@ button.button-reset {
   padding: 0 20rpx;
   width: 200rpx;
 }
+
+.image-thumbs {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.image-user {
+  width: 64rpx;
+  height: 64rpx;
+}
+.icon-play{
+  width: 50rpx;
+}
+
+.icon-button-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

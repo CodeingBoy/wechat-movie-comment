@@ -16,9 +16,29 @@
 }
 
 #random-movie-comment-info {
+  margin: 0 auto;
   margin-top: 10rpx;
   font-size: 35rpx;
   line-height: 49rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#random-movie-comment-avatar {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+#random-movie-comment-message {
+  display: block;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  margin-left: 10rpx;
+  flex-grow: 0;
 }
 
 #operations {
@@ -29,9 +49,20 @@
   background-color: white;
 }
 
+#operations image {
+  width: 50rpx;
+}
+
 #operations navigator {
   width: 0;
   flex-grow: 1;
   text-align: center;
   padding: 20rpx 20rpx;
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+}
+
+#operations text {
+  line-height: 50rpx;
 }

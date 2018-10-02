@@ -8,10 +8,23 @@
   <view id="comment-wrapper">
     <text id="comment-decoration">“</text>
     <text id="comment-content" wx:if="{{mode==1}}">{{content}}</text>
-    <view id="voice-replay" class="voice-box" wx:else bind:tap="onTapReplayVoiceButton">{{voiceDuration}}s</view>
+    <view id="voice-replay" class="voice-box" wx:else bind:tap="onTapReplayVoiceButton">
+      <image class="icon-play" src="/icons/play.png" mode="widthFix" />
+      <text>{{voiceDuration}}s</text>
+    </view>
   </view>
   <view id="operations">
-    <button class="button button-reset" id="edit-button" bind:tap="onTapEditButton">重新编辑</button>
-    <button class="button button-reset" id="submit-button" bind:tap="onTapSubmitButton">发布影评</button>
+    <button class="button button-reset" id="edit-button" bind:tap="onTapEditButton">
+      <view class="icon-button-wrapper">
+        <image class="button-icon" src="/icons/back.png" mode="widthFix" />
+        <text>重新编辑</text>
+      </view>
+    </button>
+    <button class="button button-reset" id="submit-button" bind:tap="onTapSubmitButton">
+      <view class="icon-button-wrapper">
+        <image class="button-icon" src="/icons/send.png" mode="widthFix" />
+        <text>发布影评</text>
+      </view>
+    </button>
   </view>
 </view>

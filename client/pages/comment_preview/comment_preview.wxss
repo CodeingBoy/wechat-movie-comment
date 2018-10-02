@@ -8,8 +8,8 @@ page {
   flex-grow: 1;
   margin: 100rpx 30rpx 30rpx 30rpx;
   background-color: white;
-  padding: 20rpx 20rpx;
   padding-top: 250rpx;
+  padding-bottom: 200rpx;
   position: relative;
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
@@ -32,6 +32,10 @@ page {
   font-weight: bold;
   margin-bottom: 40rpx;
   flex-grow: 0;
+}
+
+#user-info, #comment-wrapper {
+  padding-left: 20rpx;
 }
 
 #user-info {
@@ -95,5 +99,16 @@ button.button {
 
 #voice-replay {
   margin-left: 30rpx;
+  display: flex;
+  align-items: center;
+}
 
+.icon-button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-icon {
+  width: 50rpx;
 }

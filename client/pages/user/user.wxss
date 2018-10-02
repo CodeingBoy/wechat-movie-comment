@@ -46,6 +46,7 @@
 .movie-info-detail {
   flex-grow: 1;
   padding-left: 30rpx;
+  padding-right: 30rpx;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -56,7 +57,6 @@
 }
 
 .comment-summary {
-  margin-top: 30rpx;
   font-size: 30rpx;
 }
 
@@ -81,7 +81,7 @@
 .comment-user-info-nickname {
   font-size: 30rpx;
   line-height: 42rpx;
-  margin-left: 10rpx
+  margin-left: 10rpx;
 }
 
 #inner-wrapper {
@@ -92,4 +92,9 @@
   position: fixed;
   bottom: 0;
   width: 100%;
+}
+
+.voice-box {
+  display: flex;
+  align-items: center;
 }

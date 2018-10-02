@@ -1,15 +1,18 @@
 <view id="random-movie-comment">
-  <image id="random-movie-comment-image" src="{{movieInfo.image}}" mode="widthFix" />
-  <text id="random-movie-comment-name">{{movieInfo.title}}</text>
-  <view id="random-movie-comment-info">
-    XX 给你推荐了一部电影
+  <image id="random-movie-comment-image" src="{{comment.image}}" mode="widthFix" bind:tap="onTapMovieImage" />
+  <text id="random-movie-comment-name">{{comment.title}}</text>
+  <view id="random-movie-comment-info" bind:tap="onTapCommentUser">
+    <image id="random-movie-comment-avatar" src="{{comment.avatarUrl}}" mode="widthFix" />
+    <text id="random-movie-comment-message">{{comment.nickname}} 给你推荐了一部电影</text>
   </view>
 </view>
 <view id="operations">
   <navigator id="hot-movies" url="/pages/hot_movies/hot_movies">
-    热门
+    <image src="/icons/thumbs.png" class="image-thumbs" mode="widthFix" />
+    <text>热门</text>
   </navigator>
   <navigator id="user" url="/pages/user/user">
-    我的
+    <image src="/icons/user.png" class="image-user" mode="widthFix" />
+    <text>我的</text>
   </navigator>
 </view>

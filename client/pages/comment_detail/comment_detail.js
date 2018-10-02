@@ -11,11 +11,8 @@ Page({
     isReplaying: false
   },
   onLoad: function(options) {
-    if (!options.mode) {
-      options.mode = 1;
-    }
     this.setData({
-      mode: Number(options.mode),
+      mode: Number(options.mode) || 1,
       movie: {
         id: options.movieId,
         title: options.movieTitle,

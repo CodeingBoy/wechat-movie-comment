@@ -37,10 +37,23 @@ module.exports = {
     })
   },
   getRandom: async ctx => {
-    var movies = await db.query("SELECT * FROM comment_info");
+    var movies = await db.query("SELECT c.*, m.id AS movie_id, m.title, m.image FROM comment_info AS c JOIN movies AS m ON c.movie_id = m.id");
     const movieCount = movies.length;
     const selectedIndex = Math.floor(Math.random() * movieCount);
-    ctx.state.data = movies[selectedIndex];
+
+    const c = movies[selectedIndex];
+    const content = JSON.parse(c.content);
+    const result = {
+      avatarUrl: c.avatar_url,
+      type: content.type,
+      content,
+      id: c.id,
+      nickname: c.nickname,
+      title: c.title,
+      image: c.image,
+      movieId: c.movie_id
+    };
+    ctx.state.data = result;
   },
   get: async ctx => {
     const id = ctx.params.id;

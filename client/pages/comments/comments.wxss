@@ -38,7 +38,7 @@ page {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.comment-user-info{
+.comment-user-info {
   display: flex;
   align-items: center;
 }
@@ -55,7 +55,7 @@ page {
   line-height: 49rpx;
 }
 
-.comment-text-summary, .comment-voice-summary{
+.comment-text-summary, .comment-voice-summary {
   margin-top: 30rpx;
   margin-left: 50rpx;
   font-size: 30rpx;
@@ -63,4 +63,9 @@ page {
 
 #navigate-to-index {
   width: 100%;
+}
+
+.voice-box {
+  display: flex;
+  align-items: center;
 }

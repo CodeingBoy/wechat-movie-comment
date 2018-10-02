@@ -6,14 +6,20 @@ Page({
     movies: []
   },
   onLoad: function (options) {
-    this.loadMovies();
+    wx.startPullDownRefresh();
   },
-  loadMovies: function () {
+  onPullDownRefresh: function(){
+    this.loadMovies(function(){
+      wx.stopPullDownRefresh();
+    });
+  },
+  loadMovies: function (callback) {
     wx.showLoading({
       title: '获取电影中'
     });
     const onCompleteLoading = function () {
       wx.hideLoading();
+      callback && callback();
     };
 
     const page = this;

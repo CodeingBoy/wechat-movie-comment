@@ -37,6 +37,9 @@ var config = {
         // 获取一部电影的评论
         listMovieComments: `${host}/weapp/comments`,
 
+        // 随机获取一条评论
+        getRandomComment: `${host}/weapp/comments/random`,
+
         // 获取用户发布的电影评论
         listUserComments: `${host}/weapp/comments/me`,
 

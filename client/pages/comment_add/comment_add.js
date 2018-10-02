@@ -11,7 +11,8 @@ Page({
     content: '',
     voiceFilePath: '',
     isRecording: false,
-    isReplaying: false
+    isReplaying: false,
+    canSubmit: false
   },
   onLoad: function(options) {
     this.setData({
@@ -22,7 +23,8 @@ Page({
         image: options.movieImage
       },
       content: options.content || '',
-      voiceFilePath: options.voice || ''
+      voiceFilePath: options.voice || '',
+      canSubmit: options.content || options.voice || false
     });
 
     // initial record manager
@@ -71,7 +73,13 @@ Page({
   onRecordStop: function(response) {
     const voiceFilePath = response.tempFilePath;
     this.setData({
-      voiceFilePath
+      voiceFilePath,
+      canSubmit: true
+    });
+  },
+  onInput: function(event){
+    this.setData({
+      canSubmit: Boolean(event.detail.value)
     });
   }
 });

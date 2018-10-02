@@ -5,14 +5,18 @@ page {
 #wrapper {
   margin: 100rpx 30rpx 30rpx 30rpx;
   background-color: white;
-  padding: 20rpx 20rpx;
   padding-top: 400rpx;
+  padding-bottom: 20rpx;
   position: relative;
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-#wrapper text {
+#wrapper > text {
   display: block;
+}
+
+#movie-details {
+  padding-left: 20rpx;
 }
 
 #movie-image {
@@ -58,4 +62,14 @@ button.button {
   font-size: 30rpx;
   line-height: 42rpx;
   color: gray;
+}
+
+.icon-button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  width: 50rpx;
 }

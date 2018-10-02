@@ -8,12 +8,35 @@
   <view id="comment-wrapper">
     <text id="comment-decoration">“</text>
     <text id="comment-content" wx:if="{{mode==1}}">{{comment.content.content}}</text>
-    <view class="voice-box" wx:else bind:tap="onTapReplayVoiceButton" disabled="{{isReplaying}}">{{comment.content.voiceDuration}}s</view>
+    <view class="voice-box" wx:else bind:tap="onTapReplayVoiceButton">
+      <image class="icon-play" src="/icons/play.png" mode="widthFix" />
+      <text>{{comment.content.voiceDuration}}s</text>
+    </view>
   </view>
   <view id="operations">
-    <button class="button-reset button" open-type="getUserInfo" wx:if="{{!userInfo}}" bind:getuserinfo="onTapLoginToFavouriteButton">登录并收藏评论</button>
-    <button class="button button-reset" id="add-favourite-button" wx:else bind:tap="onTapAddFavouriteButton">收藏影评</button>
-    <button class="button-reset button" open-type="getUserInfo" wx:if="{{!userInfo}}" bind:getuserinfo="onTapLoginButton">登录并添加影评</button>
-    <button class="button button-reset" id="add-comment-button" wx:else bind:tap="onTapAddComment">写影评</button>
+    <button class="button-reset button" open-type="getUserInfo" wx:if="{{!userInfo}}" bind:getuserinfo="onTapLoginToFavouriteButton">
+      <view class="icon-button-wrapper">
+        <image class="icon" src="/icons/star.png" mode="widthFix" />
+        <text>登录并收藏评论</text>
+      </view>
+    </button>
+    <button class="button button-reset" id="add-favourite-button" wx:else bind:tap="onTapAddFavouriteButton">
+      <view class="icon-button-wrapper">
+        <image class="icon" src="/icons/star.png" mode="widthFix" />
+        <text>收藏影评</text>
+      </view>
+    </button>
+    <button class="button-reset button" open-type="getUserInfo" wx:if="{{!userInfo}}" bind:getuserinfo="onTapLoginButton">
+      <view class="icon-button-wrapper">
+        <image id="image-write" class="icon" src="/icons/write.png" mode="widthFix" />
+        <text>登录并添加影评</text>
+      </view>
+    </button>
+    <button class="button button-reset" id="add-comment-button" wx:else bind:tap="onTapAddComment">
+      <view class="icon-button-wrapper">
+        <image id="image-write" class="icon" src="/icons/write.png" mode="widthFix" />
+        <text>写影评</text>
+      </view>
+    </button>
   </view>
 </view>

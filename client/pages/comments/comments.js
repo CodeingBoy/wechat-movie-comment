@@ -4,13 +4,31 @@ const config = require('../../config.js');
 Page({
   data: {
     comments: [],
-    movie: {}
+    movie: {},
+    id: null
   },
   onLoad: function(options) {
-    this.loadComments(options.id);
-    this.loadMovie(options.id);
+    this.setData({
+      id: options.id
+    });
+    wx.startPullDownRefresh();
   },
-  loadComments: function(id) {
+  onPullDownRefresh: function() {
+    var promise1 = new Promise((resolve) => {
+      this.loadComments(this.data.id, function() {
+        resolve();
+      });
+    });
+    var promise2 = new Promise((resolve) => {
+      this.loadMovie(this.data.id, function() {
+        resolve();
+      });
+    });
+    Promise.all([promise1, promise2]).then(function() {
+      wx.stopPullDownRefresh();
+    });
+  },
+  loadComments: function(id, callback) {
     wx.showLoading({
       title: '加载评论中',
     });
@@ -22,10 +40,23 @@ Page({
         movieId: id
       },
       success: function(response) {
+        // trim comments
+        var comments = response.data.data;
+        comments.forEach(function(c) {
+          if (c.content.type == 1) {
+            if (c.content.content.length > 100) {
+              c.content.trimmedContent = c.content.content.substr(0, 100) + '...';
+            } else {
+              c.content.trimmedContent = c.content.content;
+            }
+          }
+        });
+
         page.setData({
-          comments: response.data.data
+          comments
         });
         wx.hideLoading();
+        callback && callback();
       },
       fail: function() {
         wx.hideLoading();
@@ -33,24 +64,27 @@ Page({
           title: '评论加载失败，请稍候再试',
           icon: 'none'
         });
+        callback && callback();
         wx.navigateBack();
       }
     })
   },
-  loadMovie: function (id) {
+  loadMovie: function(id, callback) {
     const page = this;
     qcloud.request({
       url: config.service.getMovie + id,
-      success: function (response) {
+      success: function(response) {
         page.setData({
           movie: response.data.data
         });
+        callback && callback();
       },
-      fail: function () {
+      fail: function() {
         wx.showToast({
           title: '加载电影数据失败',
           icon: 'none'
         });
+        callback && callback();
       }
     });
   },
@@ -59,7 +93,7 @@ Page({
       url: '/pages/index/index'
     });
   },
-  onTapComment: function(event){
+  onTapComment: function(event) {
     const index = event.currentTarget.dataset.index;
     const comment = this.data.comments[index];
     const commentJson = JSON.stringify(comment);

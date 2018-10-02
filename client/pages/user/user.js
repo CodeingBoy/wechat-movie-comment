@@ -8,52 +8,68 @@ Page({
     submittedComments: [],
     userInfo: null
   },
-  onLoad: function (options) {
-    this.setData({
-      userInfo: app.getUserInfo()
-    });
-    this.loadFavouriteComments();
-    this.loadSubmittedComments();
+  onLoad: function(options) {
+    wx.startPullDownRefresh();
   },
-  loadFavouriteComments: function(success, fail){
+  loadFavouriteComments: function(success, fail) {
     const page = this;
     qcloud.request({
       url: config.service.listFavouriteComments,
       login: true,
-      success: function(response){
+      success: function(response) {
+        // trim comments
+        var comments = response.data.data;
+        comments.forEach(function(c) {
+          if (c.content.type == 1 && c.content.content.length > 60) {
+            c.content.content = c.content.content.substr(0, 60) + '...';
+          }
+        });
+
         page.setData({
-          favouriteComments: response.data.data
+          favouriteComments: comments
         });
         success && success();
       },
-      fail: function(){
+      fail: function() {
         fail && fail();
       }
     })
   },
-  loadSubmittedComments: function (success, fail) {
+  loadSubmittedComments: function(success, fail) {
     const page = this;
     qcloud.request({
       url: config.service.listUserComments,
       login: true,
-      success: function (response) {
+      success: function(response) {
+        // trim comments
+        var comments = response.data.data;
+        comments.forEach(function(c) {
+          if (c.content.type == 1) {
+            if (c.content.content.length > 60) {
+              c.content.trimmedcontent = c.content.content.substr(0, 60) + '...';
+            } else {
+              c.content.trimmedcontent = c.content.content;
+            }
+          }
+        });
+
         page.setData({
-          submittedComments: response.data.data
+          submittedComments: comments
         });
         success && success();
       },
-      fail: function () {
+      fail: function() {
         fail && fail();
       }
     })
   },
-  onTapLoginButton: function (response) {
+  onTapLoginButton: function(response) {
     wx.showLoading({
       title: '正在登录'
     });
 
     const page = this;
-    app.onTapLoginButton(response, function () {
+    app.onTapLoginButton(response, function() {
       page.setData({
         userInfo: app.getUserInfo()
       });
@@ -63,24 +79,51 @@ Page({
         icon: 'success'
       });
       page.onTapAddComment();
-    }, function () {
+    }, function() {
       wx.hideLoading();
     });
   },
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
+    wx.showLoading({
+      title: '刷新中'
+    });
 
+    this.setData({
+      userInfo: app.getUserInfo()
+    });
+
+    var promise1 = new Promise((resolve) => {
+      this.loadFavouriteComments(function() {
+          resolve();
+        },
+        function() {
+          resolve();
+        });
+    });
+    var promise2 = new Promise((resolve) => {
+      this.loadSubmittedComments(function() {
+          resolve();
+        },
+        function() {
+          resolve();
+        });
+    });
+    Promise.all([promise1, promise2]).then(function() {
+      wx.hideLoading();
+      wx.stopPullDownRefresh();
+    });
   },
-  onTapNavigateToIndex: function(){
+  onTapNavigateToIndex: function() {
     wx.navigateBack(); // user page can only be opened from index page
   },
-  onTapCommentView: function(event){
-    const sourceType = event.currentTarget.dataset.type;
+  onTapCommentView: function(event) {
+    const sourceType = event.currentTarget.dataset.type; // 1-favourite, 2-submitted
     const index = event.currentTarget.dataset.index;
 
     var comment;
-    if(sourceType == 1){
+    if (sourceType == 1) {
       comment = this.data.favouriteComments[index];
-    }else{
+    } else {
       comment = this.data.submittedComments[index];
     }
     const commentJson = JSON.stringify(comment);

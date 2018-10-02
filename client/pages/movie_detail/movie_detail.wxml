@@ -5,8 +5,23 @@
     <text id="movie-description">{{movie.description}}</text>
   </view>
   <view id="operations">
-    <button class="button-reset button" bind:tap="onTapShowComments">查看影评</button>
-    <button class="button-reset button" open-type="getUserInfo" wx:if="{{!userInfo}}" bind:getuserinfo="onTapLoginButton">登录并添加影评</button>
-    <button class="button-reset button" wx:else bind:tap="onTapAddComment">添加影评</button>
+    <button class="button-reset button" bind:tap="onTapShowComments">
+      <view class="icon-button-wrapper">
+        <image id="image-view" class="icon" src="/icons/view.png" mode="widthFix" />
+        <text>查看影评</text>
+      </view>
+    </button>
+    <button class="button-reset button" open-type="getUserInfo" wx:if="{{!userInfo}}" bind:getuserinfo="onTapLoginButton">
+      <view class="icon-button-wrapper">
+        <image id="image-write" class="icon" src="/icons/write.png" mode="widthFix" />
+        <text>登录并添加影评</text>
+      </view>
+    </button>
+    <button class="button-reset button" wx:else bind:tap="onTapAddComment">
+      <view class="icon-button-wrapper">
+        <image id="image-write" class="icon" src="/icons/write.png" mode="widthFix" />
+        <text>添加影评</text>
+      </view>
+    </button>
   </view>
 </view>

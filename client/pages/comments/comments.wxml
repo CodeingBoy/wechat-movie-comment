@@ -9,10 +9,13 @@
         <text class="comment-user-nickname">{{item.nickname}}</text>
       </view>
       <view class="comment-text-summary" wx:if="{{item.type == 1}}">
-        {{item.content.content}}
+        {{item.content.trimmedContent}}
       </view>
       <view class="comment-voice-summary" wx:else>
-        <view class="voice-box">{{item.content.voiceDuration}}s</view>
+        <view class="voice-box">
+        <image class="icon-play" src="/icons/play.png" mode="widthFix" />
+        <text>{{item.content.voiceDuration}}s</text>
+        </view>
       </view>
     </view>
   </view>

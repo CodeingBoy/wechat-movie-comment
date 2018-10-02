@@ -12,9 +12,11 @@
         <view class="movie-info-detail">
           <text class="movie-info-title">{{item.title}}</text>
           <text class="comment-summary" wx:if="{{item.type == 1}}">{{item.content.content}}</text>
-          <view class="voice-box" wx:else>{{item.content.voiceDuration}}s</view>
+          <view class="voice-box" wx:else>
+            <image class="icon-play" src="/icons/play.png" mode="widthFix" /> {{item.content.voiceDuration}}s
+          </view>
           <view class="comment-user-info">
-            <image class="comment-user-info-avatar" src="{{item.avatarUrl}}" mode="widthFix"/>
+            <image class="comment-user-info-avatar" src="{{item.avatarUrl}}" mode="widthFix" />
             <text class="comment-user-info-nickname">{{item.nickname}}</text>
           </view>
         </view>
@@ -27,10 +29,12 @@
         <image class="movie-info-image" src="{{item.image}}" mode="widthFix" />
         <view class="movie-info-detail">
           <text class="movie-info-title">{{item.title}}</text>
-          <text class="comment-summary" wx:if="{{item.type == 1}}">{{item.content.content}}</text>
-          <view class="voice-box" wx:else>{{item.content.voiceDuration}}s</view>
+          <text class="comment-summary" wx:if="{{item.type == 1}}">{{item.content.trimmedcontent}}</text>
+          <view class="voice-box" wx:else>
+            <image class="icon-play" src="/icons/play.png" mode="widthFix" /> {{item.content.voiceDuration}}s
+          </view>
           <view class="comment-user-info">
-            <image class="comment-user-info-avatar" src="{{item.avatarUrl}}" mode="widthFix"/>
+            <image class="comment-user-info-avatar" src="{{item.avatarUrl}}" mode="widthFix" />
             <text class="comment-user-info-nickname">{{item.nickname}}</text>
           </view>
         </view>

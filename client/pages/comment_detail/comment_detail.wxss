@@ -8,8 +8,8 @@ page {
   flex-grow: 1;
   margin: 100rpx 30rpx 30rpx 30rpx;
   background-color: white;
-  padding: 20rpx 20rpx;
   padding-top: 250rpx;
+  padding-bottom: 200rpx;
   position: relative;
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
@@ -34,7 +34,11 @@ page {
   flex-grow: 0;
 }
 
-#user-info{
+#user-info, #comment-wrapper{
+  padding-left: 20rpx;
+}
+
+#user-info {
   margin: 0 50rpx;
   display: flex;
   align-items: center;
@@ -48,7 +52,7 @@ page {
   flex-grow: 0;
 }
 
-#comment-title{
+#comment-title {
   font-size: 35rpx;
   margin-left: 30rpx;
   flex-grow: 1;
@@ -59,7 +63,7 @@ page {
   margin: 30rpx 50rpx 0 50rpx;
 }
 
-#comment-decoration{
+#comment-decoration {
   font-size: 60rpx;
   width: 125rpx;
   flex-shrink: 0;
@@ -67,7 +71,7 @@ page {
   text-align: right;
 }
 
-#comment-content{
+#comment-content {
   font-size: 30rpx;
   line-height: 42rpx;
   flex-grow: 1;
@@ -82,17 +86,24 @@ page {
   margin-bottom: 30rpx;
 }
 
-.voice-box{
+.voice-box {
   margin-left: 30rpx;
+  display: flex;
+  align-items: center;
 }
 
 button.button {
   display: inline-block;
   flex-grow: 1;
+  width: 0;
   margin: 0 40rpx 10rpx 40rpx;
   text-align: center;
   padding: 10rpx 10rpx;
   font-size: 30rpx;
   line-height: 42rpx;
   color: gray;
+}
+
+.icon {
+  width: 50rpx;
 }
