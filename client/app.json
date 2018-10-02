@@ -6,7 +6,8 @@
     "pages/movie_detail/movie_detail",
     "pages/comments/comments",
     "pages/comment_add/comment_add",
-    "pages/comment_preview/comment_preview"
+    "pages/comment_preview/comment_preview",
+    "pages/comment_detail/comment_detail"
   ],
   "window":{
     "backgroundColor":"#f7f9fb",

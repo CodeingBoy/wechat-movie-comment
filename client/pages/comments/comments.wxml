@@ -3,7 +3,7 @@
     <text>暂无影评，快去发表一篇吧</text>
   </view>
   <view id="comments" wx:else>
-    <view class="comment" wx:for="{{comments}}">
+    <view class="comment" wx:for="{{comments}}" bind:tap="onTapComment" data-index="{{index}}">
       <view class="comment-user-info">
         <image class="comment-user-avatar" src="{{item.avatarUrl}}" mode="widthFix" />
         <text class="comment-user-nickname">{{item.nickname}}</text>
