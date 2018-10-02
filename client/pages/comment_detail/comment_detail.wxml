@@ -7,7 +7,7 @@
   </view>
   <view id="comment-wrapper">
     <text id="comment-decoration">“</text>
-    <text id="comment-content" wx:if="{{mode==1}}">{{content}}</text>
+    <text id="comment-content" wx:if="{{mode==1}}">{{comment.content.content}}</text>
     <view class="voice-box" wx:else bind:tap="onTapReplayVoiceButton" disabled="{{isReplaying}}">{{comment.content.voiceDuration}}s</view>
   </view>
   <view id="operations">
