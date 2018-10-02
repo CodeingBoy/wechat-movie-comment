@@ -1,2 +1,19 @@
-<!--pages/comments/comments.wxml-->
-<text>pages/comments/comments.wxml</text>
+<view id="wrapper">
+  <view id="empty-tips" wx:if="{{!comments.length}}">
+    <text>暂无影评，快去发表一篇吧</text>
+  </view>
+  <view id="comments" wx:else>
+    <view class="comment" wx:for="{{comments}}">
+      <view class="comment-user-info">
+        <image class="comment-user-avatar" src="{{item.avatarUrl}}" mode="widthFix" />
+        <text class="comment-user-nickname">{{item.nickname}}</text>
+      </view>
+      <view class="comment-text-summary" wx:if="{{item.type == 1}}">
+        {{item.content.content}}
+      </view>
+      <view class="comment-voice-summary" wx:else>
+      </view>
+    </view>
+  </view>
+</view>
+<button id="navigate-to-index" bind:tap="onTapNavigateToIndex">回到首页</button>

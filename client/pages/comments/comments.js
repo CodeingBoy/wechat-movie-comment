@@ -1,66 +1,43 @@
-// pages/comments/comments.js
+const qcloud = require('../../vendor/wafer2-client-sdk/index.js');
+const config = require('../../config.js');
+
 Page({
-
-  /**
-   * Page initial data
-   */
   data: {
-
+    comments: []
   },
-
-  /**
-   * Lifecycle function--Called when page load
-   */
-  onLoad: function (options) {
-
+  onLoad: function(options) {
+    this.loadComments(options.id);
   },
+  loadComments: function(id) {
+    wx.showLoading({
+      title: '加载评论中',
+    });
 
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady: function () {
-
+    const page = this;
+    qcloud.request({
+      url: config.service.listMovieComments,
+      data: {
+        movieId: id
+      },
+      success: function(response) {
+        page.setData({
+          comments: response.data.data
+        });
+        wx.hideLoading();
+      },
+      fail: function() {
+        wx.hideLoading();
+        wx.showToast({
+          title: '评论加载失败，请稍候再试',
+          icon: 'none'
+        });
+        wx.navigateBack();
+      }
+    })
   },
-
-  /**
-   * Lifecycle function--Called when page show
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page hide
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page unload
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * Page event handler function--Called when user drop down
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
-  onShareAppMessage: function () {
-
+  onTapNavigateToIndex: function() {
+    wx.reLaunch({
+      url: '/pages/index/index'
+    });
   }
-})
+});
