@@ -50,4 +50,10 @@ router.get('/comments/:id', controllers.comment.get);
 // POST /comments 发表评论
 router.post('/comments', validationMiddleware, controllers.comment.add);
 
-module.exports = router
+// --- 收藏接口 --- //
+// GET /favourites 获取收藏的所有评论
+router.get('/favourites', validationMiddleware, controllers.favourite.list);
+// POST /favourites 添加收藏
+router.post('/favourites', validationMiddleware, controllers.favourite.add);
+
+module.exports = router;

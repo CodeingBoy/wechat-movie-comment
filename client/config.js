@@ -38,7 +38,11 @@ var config = {
         listMovieComments: `${host}/weapp/comments`,
 
         // 添加评论
-        addComment: `${host}/weapp/comments`
+        addComment: `${host}/weapp/comments`,
+
+        // 添加收藏
+        addFavouriteComment: `${host}/weapp/favourites`
+
     }
 };
 
