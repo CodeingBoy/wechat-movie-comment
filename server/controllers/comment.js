@@ -58,7 +58,7 @@ module.exports = {
   get: async ctx => {
     const id = ctx.params.id;
 
-    var comments = await db.query("SELECT * FROM movies comment_info id = ?", [id]);
+    var comments = await db.query("SELECT * FROM comment_info WHERE id = ?", [id]);
     if (comments) {
       ctx.state.data = comments[0];
     } else {
