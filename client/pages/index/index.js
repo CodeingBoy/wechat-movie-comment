@@ -44,7 +44,7 @@ Page({
     const comment = this.data.comment;
     const commentJson = JSON.stringify(comment);
     wx.navigateTo({
-      url: `/pages/comment_detail/comment_detail?mode=${comment.type}&movieId=${comment.movie_id}&movieTitle=${comment.title}&movieImage=${comment.image}&comment=${commentJson}`
+      url: `/pages/comment_detail/comment_detail?mode=${comment.type}&movieId=${comment.movieId}&movieTitle=${comment.title}&movieImage=${comment.image}&comment=${commentJson}`
     });
   },
   onTapMovieImage: function(){

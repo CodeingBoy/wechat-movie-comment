@@ -60,7 +60,19 @@ module.exports = {
 
     var comments = await db.query("SELECT * FROM comment_info WHERE id = ?", [id]);
     if (comments) {
-      ctx.state.data = comments[0];
+      const c = comments[0];
+      const content = JSON.parse(c.content);
+
+      ctx.state.data = {
+        avatarUrl: c.avatar_url,
+        type: content.type,
+        content,
+        id: c.id,
+        nickname: c.nickname,
+        title: c.title,
+        image: c.image,
+        movieId: c.movie_id
+      };
     } else {
       ctx.state.data = {};
     }
@@ -72,6 +84,23 @@ module.exports = {
     const movieId = ctx.request.body.movieId;
     const content = ctx.request.body.content;
 
+    var count = await db.query("SELECT COUNT(*) FROM comment_info WHERE open_id = ? AND movie_id = ?", [openId, movieId]);
+    if (!count[0]['COUNT(*)']) {
+      await db.query("DELETE FROM comment_info WHERE open_id = ? AND movie_id = ?", [openId, movieId]);
+    }
+
     await db.query("INSERT INTO comment_info(open_id, movie_id, nickname, avatar_url, content) VALUES(?, ?, ?, ?, ?)", [openId, movieId, nickName, avatarUrl, content]);
+  },
+  hasComment: async ctx => {
+    const openId = ctx.state.$wxInfo.userinfo.openId;
+    const movieId = ctx.params.id;
+
+    var id = await db.query("SELECT id FROM comment_info WHERE open_id = ? AND movie_id = ? LIMIT 0, 1", [openId, movieId]);
+
+    if (id.length) {
+      ctx.state.data = id[0].id;
+    } else {
+      ctx.state.data = 0;
+    }
   }
 };

@@ -32,10 +32,16 @@
         <text>登录并添加影评</text>
       </view>
     </button>
-    <button class="button button-reset" id="add-comment-button" wx:else bind:tap="onTapAddComment">
+    <button class="button button-reset" id="add-comment-button" wx:elif="{{!commentExists}}" bind:tap="onTapAddComment">
       <view class="icon-button-wrapper">
         <image id="image-write" class="icon" src="/icons/write.png" mode="widthFix" />
         <text>写影评</text>
+      </view>
+    </button>
+    <button class="button button-reset" id="navigate-my-comment-button" wx:else bind:tap="onTapNavigateToMyComment">
+      <view class="icon-button-wrapper">
+        <image id="image-write" class="icon" src="/icons/write.png" mode="widthFix" />
+        <text>查看我的影评</text>
       </view>
     </button>
   </view>
