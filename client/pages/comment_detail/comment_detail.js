@@ -10,7 +10,8 @@ Page({
     userInfo: null,
     isReplaying: false,
     commentExists: null,
-    userCommentId: null
+    userCommentId: null,
+    commentFavourited: false
   },
   onLoad: function(options) {
     this.setData({
@@ -25,6 +26,7 @@ Page({
     });
     if (this.data.userInfo) { // needs login
       this.determineCommentExists(this.data.movie.id);
+      this.determineCommentFavourited(this.data.comment.id);
     }
   },
   onTapAddComment: function() {
@@ -88,11 +90,12 @@ Page({
   },
   onTapAddFavouriteButton: function() {
     wx.showLoading({
-      title: '正在收藏评论'
+      title: '正在' + (this.data.commentFavourited ? '取消' : '') + '收藏'
     });
 
     const commentId = this.data.comment.id;
 
+    const page = this;
     qcloud.request({
       url: config.service.addFavouriteComment,
       method: 'POST',
@@ -103,8 +106,11 @@ Page({
       success: function() {
         wx.hideLoading();
         wx.showToast({
-          title: '收藏评论成功',
+          title: (page.data.commentFavourited ? '取消' : '') + '收藏成功',
           icon: 'success'
+        });
+        page.setData({
+          commentFavourited: !page.data.commentFavourited
         });
       },
       fail: function() {
@@ -182,5 +188,21 @@ Page({
         });
       }
     });
+  },
+  determineCommentFavourited: function(id) {
+    const page = this;
+    qcloud.request({
+      url: config.service.determineFavouriteComment,
+      login: true,
+      data: {
+        commentId: id
+      },
+      success: function(response) {
+        page.setData({
+          commentFavourited: response.data.data > 0
+        });
+      }
+      // fail: do nothing
+    })
   }
 });

@@ -23,7 +23,7 @@
     <button class="button button-reset" id="add-favourite-button" wx:else bind:tap="onTapAddFavouriteButton">
       <view class="icon-button-wrapper">
         <image class="icon" src="/icons/star.png" mode="widthFix" />
-        <text>收藏影评</text>
+        <text>{{commentFavourited ? '取消收藏影评' : '收藏影评'}}</text>
       </view>
     </button>
     <button class="button-reset button" open-type="getUserInfo" wx:if="{{!userInfo}}" bind:getuserinfo="onTapLoginButton">

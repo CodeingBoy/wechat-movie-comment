@@ -62,6 +62,8 @@ router.post('/comments', validationMiddleware, controllers.comment.add);
 // --- 收藏接口 --- //
 // GET /favourites 获取收藏的所有评论
 router.get('/favourites', validationMiddleware, controllers.favourite.list);
+// GET /favourites/exists 是否收藏
+router.get('/favourites/exists', validationMiddleware, controllers.favourite.exists);
 // POST /favourites 添加收藏
 router.post('/favourites', validationMiddleware, controllers.favourite.add);
 

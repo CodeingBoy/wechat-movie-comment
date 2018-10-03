@@ -28,6 +28,20 @@ module.exports = {
 
     if (favourited.length == 0) {
       await db.query("INSERT INTO favourite_comment(open_id, comment_id) VALUES(?, ?)", [openId, commentId]);
+    } else {
+      await db.query("DELETE FROM favourite_comment WHERE open_id = ? AND  comment_id = ?", [openId, commentId]);
+    }
+  },
+  exists: async ctx => {
+    const openId = ctx.state.$wxInfo.userinfo.openId;
+    const commentId = ctx.request.query.commentId;
+
+    var favourited = await db.query("SELECT 1 FROM favourite_comment WHERE open_id = ? AND comment_id = ?", [openId, commentId]);
+
+    if (favourited.length == 0) {
+      ctx.state.data = 0;
+    } else {
+      ctx.state.data = 1;
     }
   }
 };

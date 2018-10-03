@@ -57,8 +57,11 @@ var config = {
     // 获取收藏评论
     listFavouriteComments: `${host}/weapp/favourites`,
 
-    // 添加收藏
-    addFavouriteComment: `${host}/weapp/favourites`
+    // 添加/取消收藏
+    addFavouriteComment: `${host}/weapp/favourites`,
+
+    // 判断是否已收藏
+    determineFavouriteComment: `${host}/weapp/favourites/exists`
 
   }
 };
