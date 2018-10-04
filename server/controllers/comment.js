@@ -39,6 +39,12 @@ module.exports = {
   getRandom: async ctx => {
     var movies = await db.query("SELECT c.*, m.id AS movie_id, m.title, m.image FROM comment_info AS c JOIN movies AS m ON c.movie_id = m.id");
     const movieCount = movies.length;
+
+    if (!movieCount) {
+      ctx.state.data = {};
+      return;
+    }
+
     const selectedIndex = Math.floor(Math.random() * movieCount);
 
     const c = movies[selectedIndex];

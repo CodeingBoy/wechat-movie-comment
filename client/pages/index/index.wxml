@@ -1,7 +1,7 @@
 <view id="random-movie-comment">
   <image id="random-movie-comment-image" src="{{comment.image}}" mode="widthFix" bind:tap="onTapMovieImage" />
   <text id="random-movie-comment-name">{{comment.title}}</text>
-  <view id="random-movie-comment-info" bind:tap="onTapCommentUser">
+  <view id="random-movie-comment-info" bind:tap="onTapCommentUser" wx:if="{{comment.id}}">
     <image id="random-movie-comment-avatar" src="{{comment.avatarUrl}}" mode="widthFix" />
     <text id="random-movie-comment-message">{{comment.nickname}} 给你推荐了一部电影</text>
   </view>
