@@ -20,8 +20,12 @@ Page({
         // trim comments
         var comments = response.data.data;
         comments.forEach(function(c) {
-          if (c.content.type == 1 && c.content.content.length > 60) {
-            c.content.content = c.content.content.substr(0, 60) + '...';
+          if (c.content.type == 1) {
+            if (c.content.content.length > 60) {
+              c.content.trimmedContent = c.content.content.substr(0, 60) + '...';
+            } else {
+              c.content.trimmedContent = c.content.content;
+            }
           }
         });
 
